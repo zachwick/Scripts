@@ -2,6 +2,9 @@
 # Argument 1: javascript file available via http
 # Argument 3: one of {'WHITESPACE_ONLY','SIMPLE_OPTIMIZATIONS','ADVANCED_OPTIMIZATIONS'}
 # Argument 2: externs file available via http
+
+# Written by ZachWick May 2011 - Based on the official Google Closure docs
+
 import httplib,urllib,sys
 
 params = urllib.urlencode([
