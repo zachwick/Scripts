@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# ptl - Packer Tree Licenses
+# Description: Prints out the license and url info for the entire dependency
+#              tree from the given package.
+
+declare -r T_CMDS="pactree packer sed"
+for t_cmd in $T_CMDS
+do
+  type -P $t_cmd >> /dev/null && : || {
+       echo -e "$t_cmd not found in PATH .">&2
+       exit 1
+  }
+done
+
+DEPS=`sudo pactree -u $1`
+for DEP in $DEPS ;
+do
+  echo $DEP
+  sudo packer -Si $DEP | sed -n -e '/^Licenses\|^URL.*/p'
+  echo "--------------------------------------------------"
+done
